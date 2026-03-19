@@ -1,3 +1,7 @@
+中文：README.md
+链接：https://github.com/TianRang/MAF/blob/main/README_CN.md
+
+
 # WenYou Bright UI
 
 A lightweight browser-based roleplay chat UI with multi-session conversation management, role card editing, local persistence, markdown rendering, and optional image generation support.
