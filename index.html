@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>文游 · 主页模板（亮色主题 + 设置页）</title>
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="app">
+        <!-- Scrim for mobile drawer -->
+        <div id="scrim" class="scrim" aria-hidden="true"></div>
+
+        <!-- Drawer -->
+        <aside id="drawer" class="drawer" aria-label="侧滑面板">
+            <div class="brand">
+                <div class="brand__logo" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2.5c4.7 0 8.5 3.8 8.5 8.5S16.7 19.5 12 19.5 3.5 15.7 3.5 11 7.3 2.5 12 2.5Z"
+                            stroke="rgba(11,27,26,.88)" stroke-width="1.6" />
+                        <path d="M7.8 12.2c2.1-3.4 6.7-4.7 10.5-2.9" stroke="rgba(11,27,26,.88)" stroke-width="1.6"
+                            stroke-linecap="round" />
+                        <path d="M9 20.8c.7.5 1.9.7 3 .7 1.1 0 2.3-.2 3-.7" stroke="rgba(11,27,26,.72)"
+                            stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                </div>
+                <div class="brand__meta">
+                    <div class="brand__title">文游 · Bright UI</div>
+                    <div class="brand__sub">亮色多模态社区风格模板</div>
+                </div>
+            </div>
+            <nav class="nav" aria-label="导航">
+                <div class="nav__item" data-route="mine" role="button" tabindex="0">
+                    <svg class="nav__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12c2.6 0 4.7-2.1 4.7-4.7S14.6 2.6 12 2.6 7.3 4.7 7.3 7.3 9.4 12 12 12Z"
+                            stroke="rgba(11,27,26,.85)" stroke-width="1.6" />
+                        <path d="M4.2 21.3c1.7-4.2 5-6.2 7.8-6.2s6.1 2 7.8 6.2" stroke="rgba(11,27,26,.85)"
+                            stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                    <div class="nav__text">
+                        <b>我的角色</b>
+                        <span>加载/切换角色卡</span>
+                    </div>
+                </div>
+                <div class="nav__item" data-route="history" role="button" tabindex="0">
+                    <svg class="nav__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 7h10v10H7V7Z" stroke="rgba(11,27,26,.85)" stroke-width="1.6" />
+                        <path d="M9 10h6M9 13h6" stroke="rgba(11,27,26,.70)" stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                    <div class="nav__text">
+                        <b>历史对话</b>
+                        <span>查看/跳转历史消息</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="drawer__status" aria-label="状态">
+                <div id="pillModel" class="pill" title="当前模型（来自设置）">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span id="pillModelText">模型：未设置</span>
+                </div>
+            </div>
+            <div class="drawer__actions" aria-label="面板操作">
+                <button id="btnSettings" class="actionbtn" type="button" aria-label="设置">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="rgba(11,27,26,.85)"
+                            stroke-width="1.6" />
+                        <path
+                            d="M19.4 13.2v-2.4l-2-.6a7.7 7.7 0 0 0-.7-1.6l1.1-1.8-1.7-1.7-1.8 1.1c-.5-.3-1-.5-1.6-.7l-.6-2H10.8l-.6 2c-.6.2-1.1.4-1.6.7L6.8 5.1 5.1 6.8l1.1 1.8c-.3.5-.5 1-.7 1.6l-2 .6v2.4l2 .6c.2.6.4 1.1.7 1.6l-1.1 1.8 1.7 1.7 1.8-1.1c.5.3 1 .5 1.6.7l.6 2h2.4l.6-2c.6-.2 1.1-.4 1.6-.7l1.8 1.1 1.7-1.7-1.1-1.8c.3-.5.5-1 .7-1.6l2-.6Z"
+                            stroke="rgba(11,27,26,.70)" stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                    <span>设置</span>
+                </button>
+
+                <button id="btnClearChat" class="actionbtn actionbtn--danger" type="button" aria-label="清空对话">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M7 7h10l-1 14H8L7 7Z" stroke="rgba(11,27,26,.82)" stroke-width="1.6"
+                            stroke-linejoin="round" />
+                        <path d="M9 7V5.6A1.6 1.6 0 0 1 10.6 4h2.8A1.6 1.6 0 0 1 15 5.6V7" stroke="rgba(11,27,26,.82)"
+                            stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                    <span>清空</span>
+                </button>
+            </div>
+
+            <div class="drawer__footerNote">
+                <div>提示：此为亮色主页UI模板。</div>
+                <div>“设置”里可配置：中转API / apikey / 模型 / 参数。</div>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main" aria-label="游戏面板">
+            <header class="appbar appbar--centerTitle">
+                <button id="btnMenu" class="iconbtn" aria-label="打开侧滑面板">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                            stroke-linecap="round" />
+                    </svg>
+                </button>
+
+                <div class="appbar__title appbar__title--center">
+                    <h1 class="roleTitleLine" aria-label="当前角色">
+                        <span id="roleTitleText">天然</span>
+                        <span id="roleStatus" class="roleStatus" aria-live="polite" style="display:none;"></span>
+                    </h1>
+                </div>
+
+                <!-- 占位：保持标题真正居中（对称 btnMenu 宽度） -->
+                <div class="appbar__spacer" aria-hidden="true"></div>
+            </header>
+
+            <section id="chat" class="chat" aria-label="聊天对话记录">
+                <div id="timeline" class="timeline">
+                    <!-- 已清空：不再内置示例对话 -->
+                </div>
+            </section>
+
+            <footer class="composer" aria-label="输入区">
+                <div class="composer__row">
+                    <input id="input" class="input" placeholder="说点什么呢？" autocomplete="off" />
+                    <button id="btnSend" class="send" type="button" aria-label="发送">
+                        <span>发送</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path
+                                d="M3.5 11.8 20.3 4.6c.7-.3 1.4.4 1.1 1.1l-7.2 16.8c-.3.7-1.3.6-1.5-.1l-1.7-6.1-6.1-1.7c-.7-.2-.8-1.2-.1-1.5Z"
+                                stroke="rgba(11,27,26,.88)" stroke-width="1.6" stroke-linejoin="round" />
+                            <path d="M10.9 15.9 20.9 5.9" stroke="rgba(11,27,26,.68)" stroke-width="1.6"
+                                stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settingsScrim" class="modalScrim" aria-hidden="true"></div>
+
+    <section id="settingsModal" class="modal" aria-label="设置页面">
+        <header class="modal__bar">
+            <button id="btnSettingsClose" class="iconbtn" aria-label="关闭设置">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 7l10 10M17 7 7 17" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <h2>设置 <span class="sub">API / 模型 / 参数</span></h2>
+        </header>
+
+        <div class="modal__body">
+            <div class="settingsGrid">
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>中转 API</h3>
+                            <p>用于对接后端存储/读取/模型调用（示例结构）</p>
+                        </div>
+                        <div id="apiStatus" class="status">状态：未测试</div>
+                    </div>
+
+                    <div class="form">
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">中转 API BaseURL</div>
+                                <div class="hint">例：https://your-relay.example.com</div>
+                            </div>
+                            <input id="relayBaseUrl" class="control" placeholder="https://..." />
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">API Key</div>
+                                <div class="hint" id="apiKeyHint">将保存在本地 localStorage</div>
+                            </div>
+                            <div class="row2">
+                                <input id="apiKey" class="control" type="password" placeholder="sk-..." />
+                                <button id="btnToggleKey" class="btn btn--ghost" type="button">显示/隐藏</button>
+                            </div>
+                        </div>
+
+                        <div class="btnRow">
+                            <button id="btnFetchModels" class="btn btn--primary" type="button">获取模型</button>
+                            <button id="btnTestApi" class="btn" type="button">测试连接</button>
+                            <div class="smallNote" id="modelsNote">模型列表：未加载</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>模型选择（汉堡式瀑布流下拉）</h3>
+                            <p>支持搜索/多列“瀑布流”展示，适合模型较多的场景</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="field modelPicker">
+                            <div class="labelRow">
+                                <div class="label">当前模型</div>
+                                <div class="hint" id="modelHint">点击右侧汉堡按钮展开</div>
+                            </div>
+
+                            <div class="modelPicker__top">
+                                <input id="modelInput" class="control modelPicker__input" placeholder="请选择模型"
+                                    readonly />
+                                <button id="btnModelDropdown" class="hamburgerBtn" type="button" aria-label="展开模型下拉">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div id="modelDropdown" class="dropdown" role="listbox" aria-label="模型下拉列表">
+                                <div class="dropdown__bar">
+                                    <input id="modelSearch" placeholder="搜索模型，例如：gpt / deepseek / qwen ..." />
+                                    <button id="btnCloseDropdown" class="btn btn--ghost" type="button">收起</button>
+                                </div>
+                                <div class="dropdown__list">
+                                    <div id="modelList" class="masonry"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">系统级提示词（System Prompt）</div>
+                                <div class="hint">将作为对话的系统消息</div>
+                            </div>
+                            <textarea id="systemPrompt" class="textarea" placeholder="例如：你是一个叙事引擎..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>生成参数</h3>
+                            <p>温度、输出模式、最大上下文、最大 tokens 等</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">温度（temperature）</div>
+                                <div class="hint" id="tempHint">0.70</div>
+                            </div>
+                            <div class="sliderRow">
+                                <input id="temperature" class="slider" type="range" min="0" max="2" step="0.01"
+                                    value="0.7" />
+                                <input id="temperatureNum" class="num" type="number" min="0" max="2" step="0.01"
+                                    value="0.7" />
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">输出（output）</div>
+                                    <div class="hint">响应形态/渲染策略</div>
+                                </div>
+                                <select id="outputMode" class="control">
+                                    <option value="stream">流式</option>
+                                    <option value="text">非流</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">最大 tokens（max_tokens）</div>
+                                    <div class="hint">上限取决于模型</div>
+                                </div>
+                                <input id="maxTokens" class="control" type="number" min="1" step="1"
+                                    placeholder="例如：1024" />
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">最大上下文长度（max_context_length）</div>
+                                    <div class="hint">用于前端粗略裁剪历史</div>
+                                </div>
+                                <input id="maxContext" class="control" type="number" min="128" step="128"
+                                    placeholder="例如：8192" />
+                            </div>
+
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">最大上下文消息数（max_context_messages）</div>
+                                    <div class="hint">例如：6 表示最近 6 条非 system 消息</div>
+                                </div>
+                                <input id="maxContextMessages" class="control" type="number" min="1" step="1"
+                                    placeholder="例如：6" />
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">（可选）输出上限提示</div>
+                                    <div class="hint">给UI用，不必传后端</div>
+                                </div>
+                                <input id="outputLimitHint" class="control" placeholder="例如：每次最多输出 1200 字" />
+                            </div>
+
+                            <div class="field"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- =========================
+     UI Appearance (Theme + Wallpaper)
+     ========================= -->
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>外观</h3>
+                            <p>自定义主题色与底图（保存在本地 localStorage，并跟随会话快照切换）</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="row2">
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">主题色（accent）</div>
+                                    <div class="hint">影响按钮/滑块等</div>
+                                </div>
+                                <input id="uiAccent" class="control" type="color" />
+                            </div>
+
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">辅色（accent2）</div>
+                                    <div class="hint">用于渐变/高亮</div>
+                                </div>
+                                <input id="uiAccent2" class="control" type="color" />
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">背景色（bg0）</div>
+                                    <div class="hint">顶部/浅背景</div>
+                                </div>
+                                <input id="uiBg0" class="control" type="color" />
+                            </div>
+
+                            <div class="field">
+                                <div class="labelRow">
+                                    <div class="label">背景色（bg1）</div>
+                                    <div class="hint">底部/深一点</div>
+                                </div>
+                                <input id="uiBg1" class="control" type="color" />
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">底图（Wallpaper URL / Base64）</div>
+                                <div class="hint">支持 http(s) 或 data:image</div>
+                            </div>
+
+                            <input id="uiWallpaper" class="control" placeholder="https://... 或 data:image/..." />
+
+                            <div class="row2">
+                                <label class="btn btn--primary fileBtn">
+                                    选择底图
+                                    <input id="uiWallpaperFile" class="fileInput" type="file" accept="image/*" />
+                                </label>
+                                <button id="btnWallpaperClear" class="btn btn--ghost" type="button">
+                                    清除底图
+                                </button>
+                            </div>
+
+                            <div class="smallNote">上传会转 base64 存 localStorage（图片过大会占空间）。</div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">底图透明度</div>
+                                <div class="hint" id="uiWallpaperOpacityHint">0.22</div>
+                            </div>
+                            <div class="sliderRow">
+                                <input id="uiWallpaperOpacity" class="slider" type="range" min="0" max="1" step="0.01"
+                                    value="0.22" />
+                                <input id="uiWallpaperOpacityNum" class="num" type="number" min="0" max="1" step="0.01"
+                                    value="0.22" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>生图模型</h3>
+                            <p>用于 /img 命令生图（默认调用 /v1/images/generations）</p>
+                        </div>
+                        <div id="imageApiStatus" class="status">状态：未测试</div>
+                    </div>
+
+                    <div class="form">
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">生图接口来源</div>
+                                <div class="hint">可复用上方中转API</div>
+                            </div>
+
+                            <label class="toggleRow">
+                                <input id="imageUseMainRelay" type="checkbox" />
+                                <span class="togglePill">复用上方中转API</span>
+                            </label>
+
+                            <div class="smallNote">开启后：使用“中转 API BaseURL / API Key”，并禁用下方生图 BaseURL/Key。</div>
+                        </div>
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">生图 API BaseURL（单独）</div>
+                                <div class="hint">例：https://your-image-relay.example.com</div>
+                            </div>
+                            <input id="imageRelayBaseUrl" class="control" placeholder="https://..." />
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">生图 API Key（单独）</div>
+                                <div class="hint" id="imageApiKeyHint">将保存在本地 localStorage</div>
+                            </div>
+                            <div class="row2">
+                                <input id="imageApiKey" class="control" type="password" placeholder="sk-..." />
+                                <button id="btnToggleImageKey" class="btn btn--ghost" type="button">显示/隐藏</button>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">生图接口路径</div>
+                                <div class="hint">默认：/v1/images/generations</div>
+                            </div>
+                            <input id="imageEndpoint" class="control" placeholder="/v1/images/generations" />
+                        </div>
+
+                        <div class="btnRow">
+                            <button id="btnFetchImageModels" class="btn btn--primary" type="button">获取生图模型</button>
+                            <button id="btnTestImageApi" class="btn" type="button">测试生图连接</button>
+                            <div class="smallNote" id="imageModelsNote">生图模型列表：未加载</div>
+                        </div>
+
+                        <div class="field modelPicker">
+                            <div class="labelRow">
+                                <div class="label">生图模型</div>
+                                <div class="hint" id="imageModelHint">点击右侧汉堡按钮展开</div>
+                            </div>
+
+                            <div class="modelPicker__top">
+                                <input id="imageModel" class="control modelPicker__input" placeholder="请选择生图模型"
+                                    readonly />
+                                <button id="btnImageModelDropdown" class="hamburgerBtn" type="button"
+                                    aria-label="展开生图模型下拉">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M4 7h16M4 12h16M4 17h16" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div id="imageModelDropdown" class="dropdown" role="listbox" aria-label="生图模型下拉列表">
+                                <div class="dropdown__bar">
+                                    <input id="imageModelSearch" placeholder="搜索生图模型，例如：gpt / sd / flux ..." />
+                                    <button id="btnCloseImageModelDropdown" class="btn btn--ghost"
+                                        type="button">收起</button>
+                                </div>
+                                <div class="dropdown__list">
+                                    <div id="imageModelList" class="masonry"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">图片尺寸</div>
+                                <div class="hint">格式：宽x高（例如 832x1216）</div>
+                            </div>
+
+                            <input id="imageSize" class="control" list="imageSizePresets" placeholder="例如：832x1216" />
+
+                            <datalist id="imageSizePresets">
+                                <option value="1024x1024"></option>
+                                <option value="1024x768"></option>
+                                <option value="768x1024"></option>
+                                <option value="832x1216"></option>
+                                <option value="512x512"></option>
+                            </datalist>
+
+                            <div class="smallNote">可自定义任意尺寸（最终以你的生图服务端支持为准）。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="modal__footer">
+            <div class="smallNote" id="saveNote">修改会保存到本地 localStorage（示例）。</div>
+            <div class="btnRow">
+                <button id="btnSettingsReset" class="btn btn--danger" type="button" title="恢复默认（仅本地）">恢复默认</button>
+                <button id="btnSettingsCancel" class="btn btn--ghost" type="button">取消</button>
+                <button id="btnSettingsSave" class="btn btn--primary" type="button">保存</button>
+            </div>
+        </footer>
+    </section>
+    <!-- Role modal -->
+    <div id="roleScrim" class="modalScrim" aria-hidden="true"></div>
+
+    <section id="roleModal" class="modal roleModal" aria-label="角色卡编辑器">
+        <header class="modal__bar">
+            <button id="btnRoleClose" class="iconbtn" aria-label="关闭角色卡">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 7l10 10M17 7 7 17" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <h2>我的角色 <span class="sub">角色卡 / 设定 / 扩展</span></h2>
+        </header>
+
+        <div class="modal__body roleBody">
+            <!-- Tabs -->
+            <div class="roleTabsBar" role="tablist" aria-label="角色页标签">
+                <button class="roleTab active" type="button" data-tab="basic" role="tab"
+                    aria-selected="true">基本</button>
+                <button class="roleTab" type="button" data-tab="detail" role="tab" aria-selected="false">详细</button>
+                <button class="roleTab" type="button" data-tab="worldbook" role="tab" aria-selected="false">世界书</button>
+                <button class="roleTab" type="button" data-tab="regex" role="tab" aria-selected="false">正则</button>
+            </div>
+
+            <div class="settingsGrid rolePanels">
+                <!-- 基本 -->
+                <section class="rolePanel card active" data-panel="basic" role="tabpanel" aria-label="基本">
+                    <div class="card__head">
+                        <div>
+                            <h3>基础</h3>
+                            <p>角色卡名称、头像、描述、设定、开场白</p>
+                        </div>
+                        <div class="btnRow">
+                            <button id="btnRoleGenerate" class="btn btn--ghost" type="button">一键生成</button>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">角色卡名称</div>
+                                <div class="hint">显示在顶部标题</div>
+                            </div>
+                            <input id="roleName" class="control" placeholder="例如：夜航诗人" />
+                        </div>
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">生成描述（可选）</div>
+                                <div class="hint">用于“一键生成”的参考</div>
+                            </div>
+                            <textarea id="roleGenerateDesc" class="textarea textarea--sm"
+                                placeholder="例如：赛博朋克女侦探，冷幽默口吻，霓虹雨夜，偏推理解密；要有世界书条目和互动规则。"></textarea>
+                        </div>
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">头像</div>
+                                <div class="hint">角色头像</div>
+                            </div>
+
+                            <div class="avatarRow">
+                                <div class="avatarPreviewWrap">
+                                    <img id="roleAvatarPreview" class="avatarPreview" alt="头像预览" />
+                                </div>
+
+                                <div class="avatarControls">
+                                    <input id="roleAvatarUrl" class="control"
+                                        placeholder="https://... 或 data:image/..." />
+                                    <div class="row2">
+                                        <label class="btn btn--primary fileBtn">
+                                            选择头像
+                                            <input id="roleAvatarFile" class="fileInput" type="file" accept="image/*" />
+                                        </label>
+                                        <button id="btnRoleAvatarClear" class="btn btn--ghost"
+                                            type="button">清除头像</button>
+                                    </div>
+                                    <div class="smallNote">上传会转 base64 存 localStorage（图片过大会占空间）。</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">玩家头像</div>
+                                <div class="hint">用于“我”的头像</div>
+                            </div>
+
+                            <div class="avatarRow">
+                                <div class="avatarPreviewWrap">
+                                    <img id="playerAvatarPreview" class="avatarPreview" alt="玩家头像预览" />
+                                </div>
+
+                                <div class="avatarControls">
+                                    <input id="playerAvatarUrl" class="control"
+                                        placeholder="https://... 或 data:image/..." />
+                                    <div class="row2">
+                                        <label class="btn btn--primary fileBtn">
+                                            选择头像
+                                            <input id="playerAvatarFile" class="fileInput" type="file"
+                                                accept="image/*" />
+                                        </label>
+                                        <button id="btnPlayerAvatarClear" class="btn btn--ghost"
+                                            type="button">清除头像</button>
+                                    </div>
+                                    <div class="smallNote">上传会转 base64 存 localStorage（图片过大会占空间）。</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">简短描述</div>
+                                <div class="hint">用于摘要</div>
+                            </div>
+                            <textarea id="roleShortDesc" class="textarea textarea--sm"
+                                placeholder="一句话介绍这个角色..."></textarea>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">设定</div>
+                                <div class="hint">人物背景、性格、口吻、禁忌等</div>
+                            </div>
+                            <div class="editorFieldWrap">
+                                <textarea id="rolePersona" class="textarea textarea--editor"
+                                    placeholder="角色设定（可较长）..."></textarea>
+                                <button class="editorExpandBtn" type="button" data-editor-target="rolePersona"
+                                    data-editor-title="设定">
+                                    全屏编辑
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">开场白</div>
+                                <div class="hint">开始新对话时使用</div>
+                            </div>
+                            <div class="editorFieldWrap">
+                                <textarea id="roleGreeting" class="textarea textarea--md textarea--editor"
+                                    placeholder="例如：雨像薄荷一样落下..."></textarea>
+                                <button class="editorExpandBtn" type="button" data-editor-target="roleGreeting"
+                                    data-editor-title="开场白">
+                                    全屏编辑
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="labelRow">
+                                <div class="label">活跃度（Talkativeness）</div>
+                                <div class="hint" id="roleTalkHint">0.40</div>
+                            </div>
+                            <div class="sliderRow">
+                                <input id="roleTalk" class="slider" type="range" min="0" max="1" step="0.01"
+                                    value="0.4" />
+                                <input id="roleTalkNum" class="num" type="number" min="0" max="1" step="0.01"
+                                    value="0.4" />
+                            </div>
+                        </div>
+
+                </section>
+
+                <!-- 详细 -->
+                <section class="rolePanel card" data-panel="detail" role="tabpanel" aria-label="详细">
+                    <div class="card__head">
+                        <div>
+                            <h3>详细</h3>
+                            <p>默认：场景 / 作者注释；也支持你新增自定义条目</p>
+                        </div>
+                        <div class="btnRow">
+                            <button id="btnRoleAddDetail" class="btn btn--primary" type="button">新增条目</button>
+                        </div>
+                    </div>
+
+                    <div class="roleSection">
+                        <div class="roleSection__label">
+                            <span>场景 <span>SCENARIO</span></span>
+                            <button class="editorExpandBtn" type="button" data-editor-target="roleScenario"
+                                data-editor-title="场景">
+                                全屏编辑
+                            </button>
+                        </div>
+                        <textarea id="roleScenario" class="roleTextBox" placeholder="写入场景设定..."></textarea>
+                    </div>
+
+                    <div class="roleSection">
+                        <div class="roleSection__label">
+                            <span>作者注释 <span>CREATOR NOTES</span></span>
+                            <button class="editorExpandBtn" type="button" data-editor-target="roleCreatorNotes"
+                                data-editor-title="作者注释">
+                                全屏编辑
+                            </button>
+                        </div>
+                        <textarea id="roleCreatorNotes" class="roleTextBox"
+                            placeholder="# 标签 / 口吻 / 注意事项..."></textarea>
+                    </div>
+
+                    <div class="roleSection">
+                        <div class="roleSection__label">自定义条目 <span>CUSTOM</span></div>
+                        <div id="roleDetailList" class="kvList" data-scope="detail"></div>
+                    </div>
+                </section>
+
+                <!-- 世界书 -->
+                <section class="rolePanel card" data-panel="worldbook" role="tabpanel" aria-label="世界书">
+                    <div class="card__head">
+                        <div>
+                            <h3>世界书</h3>
+                            <p>可新增/删除条目（例如：组织、地点、术语、人物关系）</p>
+                        </div>
+                        <div class="btnRow">
+                            <button id="btnRoleAddWorldbook" class="btn btn--primary" type="button">新增条目</button>
+                        </div>
+                    </div>
+
+                    <div class="roleSection">
+                        <div class="roleSection__label">世界书条目 <span>WORLDBOOK</span></div>
+                        <div id="roleWorldbookList" class="kvList" data-scope="worldbook"></div>
+                    </div>
+                </section>
+
+                <!-- 正则 -->
+                <section class="rolePanel card" data-panel="regex" role="tabpanel" aria-label="正则">
+                    <div class="card__head">
+                        <div>
+                            <h3>正则</h3>
+                            <p>可新增/删除规则（pattern / replace / flags）</p>
+                        </div>
+                        <div class="btnRow">
+                            <button id="btnRoleAddRegex" class="btn btn--primary" type="button">新增规则</button>
+                        </div>
+                    </div>
+
+                    <div id="roleRegexList" class="regexList"></div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="modal__footer">
+            <div class="smallNote" id="roleSaveNote">角色卡保存在本地 localStorage（示例）。</div>
+            <div class="btnRow">
+                <button id="btnRoleExport" class="btn btn--ghost" type="button">导出角色</button>
+                <button id="btnRoleImport" class="btn btn--ghost" type="button">导入角色</button>
+                <input id="roleImportFile" type="file" accept="application/json,.json" style="display:none" />
+
+                <button id="btnRoleCancel" class="btn btn--ghost" type="button">恢复默认</button>
+                <button id="btnRoleSave2" class="btn btn--primary" type="button">保存</button>
+            </div>
+        </footer>
+    </section>
+
+    <!-- Role advanced editor modal -->
+    <div id="editorScrim" class="modalScrim" aria-hidden="true"></div>
+
+    <section id="editorModal" class="modal editorModal" aria-label="高级编辑器">
+        <header class="modal__bar">
+            <button id="btnEditorClose" class="iconbtn" aria-label="关闭编辑器">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 7l10 10M17 7 7 17" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+            <h2>
+                高级编辑器
+                <span class="sub" id="editorModalTitle">编辑内容</span>
+            </h2>
+        </header>
+
+        <div class="modal__body editorModal__body">
+            <div class="editorShell">
+                <div class="editorShell__meta">
+                    <div class="editorMetaTitle" id="editorMetaTitle">编辑内容</div>
+                    <div class="editorMetaHint" id="editorMetaHint">支持长文本编辑，保存时会同步回原字段。</div>
+                </div>
+
+                <textarea id="editorTextarea" class="editorTextarea" placeholder="请在这里编辑内容..."></textarea>
+
+                <div class="editorPreviewWrap">
+                    <div class="editorPreviewHead">
+                        <div class="editorPreviewTitle">Markdown 预览</div>
+                    </div>
+                    <div id="editorPreview" class="editorPreview content--markdown"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="modal__footer">
+            <div class="smallNote" id="editorCountText">0 字</div>
+            <div class="btnRow">
+                <button id="btnEditorPreview" class="btn btn--ghost" type="button">切换预览</button>
+                <button id="btnEditorCancel" class="btn btn--ghost" type="button">取消</button>
+                <button id="btnEditorApply" class="btn btn--primary" type="button">应用</button>
+            </div>
+        </footer>
+    </section>
+
+    <!-- History modal -->
+    <div id="historyScrim" class="modalScrim" aria-hidden="true"></div>
+
+    <section id="historyModal" class="modal historyModal" aria-label="历史对话（多会话）">
+        <header class="modal__bar">
+            <button id="btnHistoryClose" class="iconbtn" aria-label="关闭历史">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 7l10 10M17 7 7 17" stroke="rgba(11,27,26,.88)" stroke-width="1.8"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+
+            <h2>对话 <span class="sub">多会话 · 含参数快照</span></h2>
+
+            <div class="btnRow" style="margin-left:auto;">
+                <button id="btnConvNew" class="btn btn--primary" type="button" title="新建对话">
+                    新建对话
+                </button>
+
+                <button id="btnHistoryImport" class="btn btn--ghost" type="button" title="导入会话 JSON（支持单会话或全部会话）">
+                    导入历史
+                </button>
+                <input id="historyImportFile" type="file" accept="application/json,.json" style="display:none" />
+
+                <button id="btnHistoryExport" class="btn btn--ghost" type="button" title="导出全部会话（含参数）">
+                    导出全部
+                </button>
+
+                <button id="btnHistoryClear" class="btn btn--danger" type="button" title="删除所有会话（仅本地）">
+                    删除全部
+                </button>
+            </div>
+        </header>
+
+        <div class="modal__body">
+            <div class="settingsGrid">
+                <div class="card">
+                    <div class="card__head">
+                        <div>
+                            <h3>消息列表（会话）</h3>
+                            <h5>点击一条会话即可切换；每条会话会恢复当时的 API/模型/提示词/参数 等全部设置，所有导入、导出皆为JSON格式。</h5>
+                        </div>
+                    </div>
+
+                    <div id="historyEmpty" class="smallNote" style="padding:8px 2px;">暂无会话。</div>
+                    <div id="historyList" class="historyList"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="modal__footer">
+            <div class="smallNote">提示：会话会保存“消息 + 设置快照 + 角色卡快照”，切换会话会自动恢复。</div>
+        </footer>
+    </section>
+    <script defer src="app.js"></script>
+    <!-- Toast notify -->
+    <div id="toastWrap" class="toastWrap" aria-live="polite" aria-atomic="true"></div>
+</body>
+
+</html>
